@@ -1,6 +1,7 @@
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
-import { menuPrincipal } from '../menus/menuPrincipal';
+import { menuPrincipal } from '../menus/menuOptions';
+import { AutorController } from './AutorController';
 
 export class MainController {
     private readonly rl = readline.createInterface({
@@ -11,6 +12,8 @@ export class MainController {
     constructor(){}
 
     public async start(): Promise<void> {
+        const menuAutor = new AutorController(this.rl,this.start.bind(this)); // Passa a função start como callback para retornar ao menu principal
+
         let running: boolean = true;        
         while(running) {            
             menuPrincipal();                  
@@ -22,7 +25,8 @@ export class MainController {
                 case '1':
                     //função menu autores
                     console.log("Opção 1 digitada")  //await this...
-                    await this.pause();
+                    await menuAutor.start(); 
+                    //await this.pause();
                     break;
 
                 case '2':
