@@ -1,4 +1,4 @@
-import { MainController } from './menus/menuPrincipal';
+import { MainController } from './controllers/MainController';
 
 async function main(): Promise<void> {
     const menu = new MainController();
