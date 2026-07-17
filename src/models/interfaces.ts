@@ -2,30 +2,34 @@ export interface AuthorResume{
     id: number;
     name: string;
     nationality: string;
-    created_in: string;
+    createdIn: string;
+    //funções/métodos obrigatórios?
 }
 
 export interface BookResume{
     id: number;
-    author_id: number;
+    authorId: number;
     title: string;
     year: number;
     category: string;
-    created_in: string;
+    createdIn: string;
+    //funções/métodos obrigatórios?
 }
 
 export interface CustomerResume{
     id: number;
     name: string;
     cpf: string;
-    birth_date: string;
+    birthDate: string;
     phone: string;
-    created_in: string;
+    createdIn: string;
+    //funções/métodos obrigatórios?
 }
 
 export interface BorrowResume{
-    customer_id: number;
-    book_id: number;
-    borrow_date: string;
-    return_date: string;
+    customerId: number;
+    bookId: number;
+    borrowDate: string;
+    returnDate: string;
+    //funções/métodos obrigatórios?
 }
