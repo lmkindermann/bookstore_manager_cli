@@ -2,10 +2,12 @@ import { menuAutor } from '../menus/menuOptions';
 
 export class AutorController {
     public readonly rl: any;
+    private readonly pause: any;
     private readonly callback: any;
 
-    constructor(rl: any, callback: any) {
+    constructor(rl: any, pause: any, callback: any) {
         this.rl = rl;
+        this.pause = pause;
         this.callback = callback;
     }
 
@@ -59,11 +61,6 @@ export class AutorController {
                     await this.pause();
             }
         }
-        //this.rl.close();
         this.callback();  // Chama a função de callback para retornar ao menu principal
-    }
-
-    private async pause(): Promise<void> {
-        await this.rl.question('\nPressione ENTER para continuar...');
     }
 }
