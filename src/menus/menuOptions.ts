@@ -6,7 +6,8 @@ export function menuPrincipal() {
     console.log("2. Livros");
     console.log("3. Clientes");
     console.log("4. Empréstimos");
-    console.log("5. Encerrar")
+    console.log("5. Banco de Dados");
+    console.log("6. Encerrar")
 }      
         
 export function menuAutor() {
