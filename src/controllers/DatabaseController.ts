@@ -1,5 +1,4 @@
-import { criarBanco } from '../database/databaseCreate';
-import { criarTabelas } from '../database/databaseTables';
+import { criarBanco, criarTabelas } from '../services/DatabaseService';
 import { menuBancoDados } from '../menus/menuOptions';
 
 export class DatabaseController {
@@ -46,10 +45,6 @@ export class DatabaseController {
         console.clear();
         console.log("Criar Banco de Dados");
         try {
-            // OK!!
-            //verificar se o banco de dados já existe (services)
-            //se não existir, criar o banco de dados (repositores)
-            //tratar erros e exibir mensagens de sucesso ou falha
             await criarBanco();                  
         } catch (error) {
             console.error('Erro ao criar banco de dados: ', error);            
@@ -62,11 +57,6 @@ export class DatabaseController {
         console.log("Criar Tabelas");
         
         try {
-            // OK!!
-            // Verifica se as tabelas já existem no banco de dados (services)
-            // Se não existirem, cria as tabelas no banco de dados (repositores)
-            // tratar erros e exibir mensagens de sucesso ou falha
-            //console.log("Tabelas criadas com sucesso!");
             await criarTabelas();
         } catch (error) {
             console.error('Erro ao criar tabelas: ', error);            
