@@ -1,6 +1,6 @@
-import { menuEmprestimo } from '../menus/menuOptions';
+import { menuBancoDados } from '../menus/menuOptions';
 
-export class EmprestimoController {
+export class DatabaseController {
     public readonly rl: any;
     private readonly pause: any;
     private readonly callback: any;
@@ -14,33 +14,27 @@ export class EmprestimoController {
     public async start(): Promise<void> {
         let running: boolean = true;
         while(running) {
-            menuEmprestimo();
+            menuBancoDados();
             const option: string = await this.rl.question(
                 'Escolha uma opção: '
             );
 
             switch (option) {
                 case '1':
-                    //função cadastrar empréstimo
+                    //função criar banco de dados
                     console.log("Opção 1 digitada")  //await this...
                     await this.pause();
                     break;
                 
                 case '2':
-                    //função consultar empréstimos
+                    //função criar tabelas
                     console.log("Opção 2 digitada")
-                    await this.pause();
-                    break;
-
-                case '3':
-                    //função registrar devolução
-                    console.log("Opção 3 digitada")
                     await this.pause();
                     break;
 
                 case '4':
                     //função retornar ao menu anterior
-                    console.log("Opção 4 digitada")
+                    console.log("Opção 3 digitada")
                     running = false;
                     break;
 

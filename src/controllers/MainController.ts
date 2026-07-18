@@ -5,6 +5,8 @@ import { AutorController } from './AutorController';
 import { LivroController } from './LivroController';
 import { ClienteController } from './ClienteController';
 import { EmprestimoController } from './EmprestimoController';
+import { DatabaseController } from './DatabaseController';
+
 
 export class MainController {
     private readonly rl = readline.createInterface({
@@ -19,6 +21,7 @@ export class MainController {
         const menuLivro = new LivroController(this.rl, this.pause, this.start.bind(this));
         const menuCliente = new ClienteController(this.rl, this.pause, this.start.bind(this));
         const menuEmprestimo = new EmprestimoController(this.rl, this.pause, this.start.bind(this));
+        const menuBancoDados = new DatabaseController(this.rl, this.pause, this.start.bind(this));
         // callback -> Passa a função start como callback para retornar ao menu principal
 
         let running: boolean = true;        
@@ -60,7 +63,8 @@ export class MainController {
                 case '5':
                     //função banco de dados
                     console.log("Opção 5 digitada")
-                    await this.pause();
+                    await menuBancoDados.start();
+                    //await this.pause();
                     break;
                 
                 case '6':
