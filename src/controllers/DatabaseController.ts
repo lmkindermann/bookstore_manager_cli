@@ -54,8 +54,7 @@ export class DatabaseController {
 
     private async criarTabelas(): Promise<void> {
         console.clear();
-        console.log("Criar Tabelas");
-        
+        console.log("Criar Tabelas");        
         try {
             await criarTabelas();
         } catch (error) {
