@@ -16,7 +16,7 @@ pool.on('error',(err) => {
     console.error('Erro inesperado no pool', err);
 });
 
-export const connectToDatabase = async () => {
+export const conectarBanco = async () => {
     try {
         const client = await pool.connect();
         console.log('Conexão com o banco de dados estabelecida com sucesso!');

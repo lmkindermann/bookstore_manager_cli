@@ -1,4 +1,4 @@
-import { criarBanco } from '../database/dbCreate';
+import { criarBanco } from '../database/databaseCreate';
 import { menuBancoDados } from '../menus/menuOptions';
 
 export class DatabaseController {
