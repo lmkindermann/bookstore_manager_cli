@@ -25,6 +25,7 @@ export const connectToDatabase = async () => {
     } catch (error: any) {
         //console.error('Erro ao conectar ao banco de dados:', error);
         if (error.code === '3D000') {
+           console.clear();
            console.log('AVISO! Banco de dados inexistente.');
            console.log('\nSe este for o seu primeiro uso, crie o banco e as tabelas primeiro através das opções 5.1 e 5.2,');
            console.log('Na sequencia, reinicie a aplicação para estabelecer a conexão com o banco de dados da aplicação.');         

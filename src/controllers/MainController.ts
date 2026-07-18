@@ -13,8 +13,6 @@ export class MainController {
         input,
         output
     });
-    
-    constructor(){}
 
     public async start(): Promise<void> {
         const menuAutor = new AutorController(this.rl, this.pause, this.start.bind(this)); 
@@ -23,8 +21,8 @@ export class MainController {
         const menuEmprestimo = new EmprestimoController(this.rl, this.pause, this.start.bind(this));
         const menuBancoDados = new DatabaseController(this.rl, this.pause, this.start.bind(this));
         // callback -> Passa a função start como callback para retornar ao menu principal
-
-        let running: boolean = true;        
+        let running: boolean = true;          
+        
         while(running) {            
             menuPrincipal();                  
             const option: string = await this.rl.question(
@@ -34,42 +32,43 @@ export class MainController {
             switch (option) {
                 case '1':
                     //função menu autores
-                    console.log("Opção 1 digitada")  //await this...
+                    //console.log("Opção 1 digitada")  //await this...
                     await menuAutor.start(); 
                     //await this.pause();
                     break;
 
                 case '2':
                     //função menu livros
-                    console.log("Opção 2 digitada")
+                    //console.log("Opção 2 digitada")
                     await menuLivro.start();
                     //await this.pause();
                     break;
                 
                 case '3':
                     //função menu clientes
-                    console.log("Opção 3 digitada")
+                    //console.log("Opção 3 digitada")
                     await menuCliente.start();
                     //await this.pause();
                     break;
 
                 case '4':
                     //função menu empréstimos
-                    console.log("Opção 4 digitada")
+                    //console.log("Opção 4 digitada")
                     await menuEmprestimo.start();
                     //await this.pause();
                     break;
 
                 case '5':
                     //função banco de dados
-                    console.log("Opção 5 digitada")
+                    //console.log("Opção 5 digitada")
                     await menuBancoDados.start();
                     //await this.pause();
                     break;
                 
                 case '6':
                     //função menu encerrar
-                    console.log("Opção 6 digitada")
+                    //console.log("Opção 6 digitada")                    
+                    //pendente: encerrar a conexão com o pool
                     running = false;
                     break;
 
