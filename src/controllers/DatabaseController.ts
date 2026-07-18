@@ -1,4 +1,5 @@
 import { criarBanco } from '../database/databaseCreate';
+import { criarTabelas } from '../database/databaseTables';
 import { menuBancoDados } from '../menus/menuOptions';
 
 export class DatabaseController {
@@ -26,15 +27,10 @@ export class DatabaseController {
                     break;
                 
                 case '2':
-                    //função criar tabelas
-                    //console.log("Opção 2 digitada")
-                    //await this.pause();
                     await this.criarTabelas();
                     break;
 
                 case '3':
-                    //função retornar ao menu anterior
-                    //console.log("Opção 3 digitada")
                     running = false;
                     break;
 
@@ -43,7 +39,7 @@ export class DatabaseController {
                     await this.pause();
             }
         }
-        this.callback();  // Chama a função de callback para retornar ao menu principal
+        this.callback();
     }
 
     private async criarBancoDados(): Promise<void> {
@@ -64,12 +60,14 @@ export class DatabaseController {
     private async criarTabelas(): Promise<void> {
         console.clear();
         console.log("Criar Tabelas");
-        // Verifica se as tabelas já existem no banco de dados (services)
-        // Se não existirem, cria as tabelas no banco de dados (repositores)
-        // tratar erros e exibir mensagens de sucesso ou falha
+        
         try {
-            // Lógica para criar tabelas
-            console.log("Tabelas criadas com sucesso!");                    
+            // OK!!
+            // Verifica se as tabelas já existem no banco de dados (services)
+            // Se não existirem, cria as tabelas no banco de dados (repositores)
+            // tratar erros e exibir mensagens de sucesso ou falha
+            //console.log("Tabelas criadas com sucesso!");
+            await criarTabelas();
         } catch (error) {
             console.error('Erro ao criar tabelas: ', error);            
         }
