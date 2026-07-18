@@ -16,6 +16,23 @@ pool.on('error',(err) => {
     console.error('Erro inesperado no pool', err);
 });
 
+export const connectToDatabase = async () => {
+    try {
+        const client = await pool.connect();
+        console.log('Conexão com o banco de dados estabelecida com sucesso!');
+        client.release(); // Libera o cliente de volta para o pool
+    } catch (error) {
+        console.error('Erro ao conectar ao banco de dados:', error);
+        //if (error.code === '3D000') {
+        //    console.log('AVISO! Banco de dados inexistente. Utilize o comando 5.1. para criá-lo.');
+        //    console.log('Na sequencia, reinicie a aplicação para verificar a conexão com o banco de dados.');
+        //} else {
+        //    console.error('Erro ao conectar ao banco de dados:', error);
+        //}
+    }
+}
+
+
 // Descomente para testar a conexão
 /*
 async function main(){
