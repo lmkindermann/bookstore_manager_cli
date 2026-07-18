@@ -58,8 +58,14 @@ export class MainController {
                     break;
 
                 case '5':
-                    //função menu encerrar
+                    //função banco de dados
                     console.log("Opção 5 digitada")
+                    await this.pause();
+                    break;
+                
+                case '6':
+                    //função menu encerrar
+                    console.log("Opção 6 digitada")
                     running = false;
                     break;
 
