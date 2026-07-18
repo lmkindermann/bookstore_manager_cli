@@ -1,3 +1,4 @@
+import { criarBanco } from '../database/dbCreate';
 import { menuBancoDados } from '../menus/menuOptions';
 
 export class DatabaseController {
@@ -21,9 +22,6 @@ export class DatabaseController {
 
             switch (option) {
                 case '1':
-                    //função criar banco de dados
-                    //console.log("Opção 1 digitada")  //await this...
-                    //await this.pause();
                     await this.criarBancoDados();
                     break;
                 
@@ -52,10 +50,11 @@ export class DatabaseController {
         console.clear();
         console.log("Criar Banco de Dados");
         try {
+            // OK!!
             //verificar se o banco de dados já existe (services)
             //se não existir, criar o banco de dados (repositores)
             //tratar erros e exibir mensagens de sucesso ou falha
-            console.log(`Banco de dados criado com sucesso!`);                    
+            await criarBanco();                  
         } catch (error) {
             console.error('Erro ao criar banco de dados: ', error);            
         }
