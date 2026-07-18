@@ -54,3 +54,12 @@ export function menuEmprestimo() {
     console.log("3. Registrar devolução");
     console.log("4. Retornar ao menu anterior");
 }
+
+export function menuBancoDados(){
+    console.clear();
+    console.log("Banco de Dados");
+    console.log("Selecione a opção desejada:");
+    console.log("1. Criar banco de dados");
+    console.log("2. Criar tabelas");
+    console.log("3. Retornar ao menu anterior");
+}
