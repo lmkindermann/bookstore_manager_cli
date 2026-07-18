@@ -32,7 +32,7 @@ export class DatabaseController {
                     await this.pause();
                     break;
 
-                case '4':
+                case '3':
                     //função retornar ao menu anterior
                     console.log("Opção 3 digitada")
                     running = false;
