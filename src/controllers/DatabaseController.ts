@@ -22,19 +22,21 @@ export class DatabaseController {
             switch (option) {
                 case '1':
                     //função criar banco de dados
-                    console.log("Opção 1 digitada")  //await this...
-                    await this.pause();
+                    //console.log("Opção 1 digitada")  //await this...
+                    //await this.pause();
+                    await this.criarBancoDados();
                     break;
                 
                 case '2':
                     //função criar tabelas
-                    console.log("Opção 2 digitada")
-                    await this.pause();
+                    //console.log("Opção 2 digitada")
+                    //await this.pause();
+                    await this.criarTabelas();
                     break;
 
                 case '3':
                     //função retornar ao menu anterior
-                    console.log("Opção 3 digitada")
+                    //console.log("Opção 3 digitada")
                     running = false;
                     break;
 
@@ -45,4 +47,34 @@ export class DatabaseController {
         }
         this.callback();  // Chama a função de callback para retornar ao menu principal
     }
+
+    private async criarBancoDados(): Promise<void> {
+        console.clear();
+        console.log("Criar Banco de Dados");
+        try {
+            //verificar se o banco de dados já existe (services)
+            //se não existir, criar o banco de dados (repositores)
+            //tratar erros e exibir mensagens de sucesso ou falha
+            console.log(`Banco de dados criado com sucesso!`);                    
+        } catch (error) {
+            console.error('Erro ao criar banco de dados: ', error);            
+        }
+        await this.pause();
+    }
+
+    private async criarTabelas(): Promise<void> {
+        console.clear();
+        console.log("Criar Tabelas");
+        // Verifica se as tabelas já existem no banco de dados (services)
+        // Se não existirem, cria as tabelas no banco de dados (repositores)
+        // tratar erros e exibir mensagens de sucesso ou falha
+        try {
+            // Lógica para criar tabelas
+            console.log("Tabelas criadas com sucesso!");                    
+        } catch (error) {
+            console.error('Erro ao criar tabelas: ', error);            
+        }
+        await this.pause();
+    }
+
 }

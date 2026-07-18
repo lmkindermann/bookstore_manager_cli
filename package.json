@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/lmkindermann/bookstore_manager_cli#readme",
   "dependencies": {
+    "@inquirer/prompts": "^8.5.2",
     "dotenv": "^17.4.2",
     "pg": "^8.22.0"
   },
