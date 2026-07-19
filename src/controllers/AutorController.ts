@@ -1,6 +1,6 @@
 import { rl, rlPause } from '../utils/readlineConfig';
 import { menuAutor } from '../menus/menuOptions';
-import { novoAutor, mostrarAutores, consultaAutor } from '../services/AutorService';
+import { novoAutor, mostrarAutores, consultaAutor, editarAutor } from '../services/AutorService';
 
 export class AutorController {
     private readonly callback: any;
@@ -74,18 +74,9 @@ export class AutorController {
     private async atualizarAutor(): Promise<void> {
         console.clear();
         console.log("Atualizar Autor");
-        // Lógica para atualizar um autor (nome ou id)
-        // Retorna as informações do autor atualizado ou avisa se não encontrado
-        // tratar erros e exibir mensagens de sucesso ou falha
-        try {
-            // Lógica para atualizar o autor
-            console.log("Informações do autor atualizadas com sucesso!");                    
-        } catch (error) {
-            console.error('Erro ao atualizar autor: ', error);            
-        }    
-        //await this.pause();
+        await editarAutor();
         await rlPause();
-    }
+    }    
 
     private async removerAutor(): Promise<void> {
         console.clear();

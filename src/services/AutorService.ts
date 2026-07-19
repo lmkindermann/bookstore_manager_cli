@@ -1,5 +1,5 @@
 import { rl } from '../utils/readlineConfig';
-import { verificarAutor, inserirAutor, listaAutores, buscaAutor } from '../repositories/AutorRepository';
+import { verificarAutor, inserirAutor, listaAutores, buscaAutor, atualizarAutor } from '../repositories/AutorRepository';
 import { tabelaAutores } from '../models/tabelas';
 
 export async function novoAutor(): Promise<void> {
@@ -7,7 +7,7 @@ export async function novoAutor(): Promise<void> {
         const nome: string = await rl.question('Digite o nome do autor: ');
         let result: any = await verificarAutor(nome);
         if (result.rowCount > 0) {
-            //verificar se o autor já existe no banco de dados
+            //verificar se o autor já existev no banco de dados
             console.log(`Autor "${nome}" já existe no banco de dados.`);
         } else { 
             //se não existir, cadastra o autor no banco de dados
@@ -45,4 +45,22 @@ export async function consultaAutor(): Promise<void> {
     } catch (error) {
         console.error('Erro ao consultar autor: ', error);
     }    
+}
+
+export async function editarAutor(): Promise<void> {
+    try {     
+        const nome: string = await rl.question('Digite o nome do autor: ');
+        let result: any = await buscaAutor(nome);
+        if (result.rowCount === 0) {
+            console.log("Autor não encontrado.");
+        } else {
+            const autorId = result.rows[0].id;
+            const nome: string = await rl.question('Digite o novo nome do autor: ');
+            const nacionalidade: string = await rl.question('Digite a nova nacionalidade do autor: ');
+            result = await atualizarAutor(autorId, nome, nacionalidade);
+            console.log(`Autor "${nome}" cadastrado com sucesso!`);
+        }
+    } catch (error) {
+        console.error('Erro ao consultar autor: ', error);
+    }     
 }
