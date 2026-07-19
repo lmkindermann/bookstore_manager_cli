@@ -1,6 +1,6 @@
 import { rl, rlPause } from '../utils/readlineConfig';
 import { menuAutor } from '../menus/menuOptions';
-import { novoAutor, mostrarAutores, consultaAutor, editarAutor } from '../services/AutorService';
+import { novoAutor, mostrarAutores, consultaAutor, editarAutor, apagarAutor } from '../services/AutorService';
 
 export class AutorController {
     private readonly callback: any;
@@ -81,17 +81,7 @@ export class AutorController {
     private async removerAutor(): Promise<void> {
         console.clear();
         console.log("Remover Autor");
-        // Lógica para remover um autor (nome ou id)
-        // Retorna uma mensagem de sucesso ou avisa se não encontrado
-        // tratar erros e exibir mensagens de sucesso ou falha
-        try {
-            // Lógica para remover o autor
-            console.log("Autor removido com sucesso!");                    
-        } catch (error) {
-            console.error('Erro ao remover autor: ', error);            
-        }    
-        //await this.pause();
+        await apagarAutor();        
         await rlPause();
     }
-
 }

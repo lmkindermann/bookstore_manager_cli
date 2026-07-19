@@ -1,5 +1,5 @@
 import { rl } from '../utils/readlineConfig';
-import { verificarAutor, inserirAutor, listaAutores, buscaAutor, atualizarAutor } from '../repositories/AutorRepository';
+import { verificarAutor, inserirAutor, listaAutores, buscaAutor, atualizarAutor, removerAutor } from '../repositories/AutorRepository';
 import { tabelaAutores } from '../models/tabelas';
 
 export async function novoAutor(): Promise<void> {
@@ -7,10 +7,8 @@ export async function novoAutor(): Promise<void> {
         const nome: string = await rl.question('Digite o nome do autor: ');
         let result: any = await verificarAutor(nome);
         if (result.rowCount > 0) {
-            //verificar se o autor já existev no banco de dados
             console.log(`Autor "${nome}" já existe no banco de dados.`);
         } else { 
-            //se não existir, cadastra o autor no banco de dados
             const nacionalidade: string = await rl.question('Digite a nacionalidade do autor: ');
             result = await inserirAutor(nome, nacionalidade);
             console.log(`Autor "${nome}" cadastrado com sucesso!`);
@@ -54,7 +52,7 @@ export async function editarAutor(): Promise<void> {
         if (result.rowCount === 0) {
             console.log("Autor não encontrado.");
         } else {
-            const autorId = result.rows[0].id;
+            const autorId: number = result.rows[0].id;
             const nome: string = await rl.question('Digite o novo nome do autor: ');
             const nacionalidade: string = await rl.question('Digite a nova nacionalidade do autor: ');
             result = await atualizarAutor(autorId, nome, nacionalidade);
@@ -63,4 +61,20 @@ export async function editarAutor(): Promise<void> {
     } catch (error) {
         console.error('Erro ao consultar autor: ', error);
     }     
+}
+
+export async function apagarAutor(): Promise<void> {
+    try {
+        const nome: string = await rl.question('Digite o nome do autor: ');
+        let result: any = await buscaAutor(nome);
+        if (result.rowCount === 0) {
+            console.log("Autor não encontrado.");
+        } else {
+            const autorId: number = result.rows[0].id;
+            result = await removerAutor(autorId);
+            console.log("Autor removido com sucesso!");  
+        }                  
+    } catch (error) {
+        console.error('Erro ao remover autor: ', error);            
+    }   
 }
