@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import { Client } from 'pg';
-import { sqlVerificarBanco, sqlNovoBanco, sqlVerificarTabelas, sqlNovasTabelas } from '../repositories/DatabaseRepository';
+import { verificarBanco, novoBanco, verificarTabelas, novasTabelas } from '../repositories/DatabaseRepository';
 
 export const criarBanco = async () => {        
     // Configuração do Banco de Dados
@@ -21,10 +21,10 @@ export const criarBanco = async () => {
     try{
         await clienteInicial.connect();
         // Verifica se o banco já existe
-        const checkDb = await clienteInicial.query(sqlVerificarBanco,[novo_banco]);
-        if (checkDb.rowCount === 0){
+        let result: any = await verificarBanco(clienteInicial, novo_banco);        
+        if (result.rowCount === 0){
             // não existindo, vai criar aqui
-            await clienteInicial.query(sqlNovoBanco + `${novo_banco}`);
+            result = await novoBanco(clienteInicial, novo_banco);
             console.log(`Banco de dados "${novo_banco}" criado com sucesso!`);
         } else {
             // senão informa sua existência
@@ -56,13 +56,10 @@ export const criarTabelas = async () => {
     try{
         await clienteTabelas.connect();
         // Verifica se as tabelas já existem
-        const checkAutores = await clienteTabelas.query(sqlVerificarTabelas,['autores']);
-        const checkLivros = await clienteTabelas.query(sqlVerificarTabelas,['livros']);
-        const checkClientes = await clienteTabelas.query(sqlVerificarTabelas,['clientes']);
-        const checkEmprestimos = await clienteTabelas.query(sqlVerificarTabelas,['emprestimos']);        
-        if (checkAutores.rowCount === 0 || checkLivros.rowCount === 0 || checkClientes.rowCount === 0 || checkEmprestimos.rowCount === 0) {
+        let result: any = await verificarTabelas(clienteTabelas);
+        if (result === true) {
             // não existindo, vai criar aqui
-            await clienteTabelas.query(sqlNovasTabelas);
+            result = await novasTabelas(clienteTabelas);
             console.log(`Tabelas criadas com sucesso!`);
         } else {
             // senão informa sua existência

@@ -1,3 +1,32 @@
+export async function verificarBanco(clienteInicial: any, novo_banco: string|undefined): Promise<void> {
+    const result = await clienteInicial.query(sqlVerificarBanco,[novo_banco]);
+    return result;
+}
+
+export async function novoBanco(clienteInicial: any, novo_banco: string|undefined): Promise<void> {
+    const result = await clienteInicial.query(sqlNovoBanco + `${novo_banco}`);
+    return result;
+}
+
+export async function verificarTabelas(clienteTabelas: any): Promise<boolean> {
+    let result: boolean;
+    const checkAutores = await clienteTabelas.query(sqlVerificarTabelas,['autores']);
+    const checkLivros = await clienteTabelas.query(sqlVerificarTabelas,['livros']);
+    const checkClientes = await clienteTabelas.query(sqlVerificarTabelas,['clientes']);
+    const checkEmprestimos = await clienteTabelas.query(sqlVerificarTabelas,['emprestimos']);  
+    if (checkAutores.rowCount === 0 || checkLivros.rowCount === 0 || checkClientes.rowCount === 0 || checkEmprestimos.rowCount === 0) {
+        result = true;
+    } else {
+        result = false;
+    }
+    return result;
+}
+
+export async function novasTabelas(clienteTabelas: any): Promise<void> {
+    const result = await clienteTabelas.query(sqlNovasTabelas);
+    return result;
+}
+
 export const sqlVerificarBanco = `SELECT 1 FROM pg_database WHERE datname = $1`
 
 export const sqlNovoBanco = `CREATE DATABASE `
