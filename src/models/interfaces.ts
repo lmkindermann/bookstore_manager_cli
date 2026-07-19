@@ -1,8 +1,8 @@
 export interface AuthorResume{
     id: number;
-    name: string;
-    nationality: string;
-    createdIn: string;
+    nome: string;
+    nacionalidade: string;
+    criado_em: string;
     //funções/métodos obrigatórios?
 }
 

@@ -9,7 +9,7 @@ export const pool = new Pool({
     password: process.env.PGPASSWORD,
     database: process.env.PGDATABASE,
     max: 10,
-    idleTimeoutMillis: 30000
+    idleTimeoutMillis: 5000 //30000
 });
 
 pool.on('error',(err) => {

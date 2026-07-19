@@ -2,15 +2,15 @@ import { AuthorResume, BookResume, CustomerResume, BorrowResume } from "./interf
 
 export class Author implements AuthorResume{
     id: number;
-    name: string;
-    nationality: string;
-    createdIn: string;
+    nome: string;
+    nacionalidade: string;
+    criado_em: string;
 
-    constructor(id: number, name: string, nationality: string, createdIn: string){
+    constructor(id: number, nome: string, nacionalidade: string, criado_em: string){
         this.id = id;
-        this.name = name;
-        this.nationality = nationality;
-        this.createdIn = createdIn;
+        this.nome = nome;
+        this.nacionalidade = nacionalidade;
+        this.criado_em = criado_em;
     }
     //funções/métodos da classe
 }

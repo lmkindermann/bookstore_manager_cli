@@ -1,6 +1,6 @@
 import { rl, rlPause } from '../utils/readlineConfig';
 import { menuAutor } from '../menus/menuOptions';
-import { cadastrarAutor } from '../services/AutorService';
+import { novoAutor, mostrarAutores } from '../services/AutorService';
 
 export class AutorController {
     private readonly callback: any;
@@ -53,23 +53,14 @@ export class AutorController {
     private async cadastrarAutor(): Promise<void> {
         console.clear();
         console.log("Cadastrar Autor");
-        await cadastrarAutor();
+        await novoAutor();
         await rlPause();
     }
 
     private async listarAutores(): Promise<void> {
         console.clear();
         console.log("Listar Autores");
-        // Lógica para listar os autores
-        // avisa se a tabela estiver vazia
-        // tratar erros e exibir mensagens de sucesso ou falha
-        try {
-            // Lógica para listar os autores
-            console.log("Lista de autores exibida com sucesso!");                    
-        } catch (error) {
-            console.error('Erro ao listar autores: ', error);            
-        }
-        //await this.pause();
+        await mostrarAutores();
         await rlPause();
     }
 
