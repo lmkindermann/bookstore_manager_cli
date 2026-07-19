@@ -1,13 +1,15 @@
+import { rl, rlPause } from '../utils/readlineConfig';
 import { menuCliente } from '../menus/menuOptions';
 
 export class ClienteController {
-    public readonly rl: any;
-    private readonly pause: any;
+    //public readonly rl: any;
+    //private readonly pause: any;
     private readonly callback: any;
 
-    constructor(rl: any, pause: any, callback: any) {
-        this.rl = rl;
-        this.pause = pause;
+    //constructor(rl: any, pause: any, callback: any) {
+        //this.rl = rl;
+        //this.pause = pause;
+    constructor(callback: any) {
         this.callback = callback;
     }
 
@@ -15,7 +17,8 @@ export class ClienteController {
         let running: boolean = true;
         while(running) {
             menuCliente();
-            const option: string = await this.rl.question(
+            //const option: string = await this.rl.question(
+            const option: string = await rl.question(
                 'Escolha uma opção: '
             );
 
@@ -63,7 +66,8 @@ export class ClienteController {
 
                 default:
                     console.log('Opção inválida');
-                    await this.pause();
+                    //await this.pause();
+                    await rlPause();
             }
         }
         this.callback();  // Chama a função de callback para retornar ao menu principal
@@ -76,12 +80,13 @@ export class ClienteController {
             //verificar se o cliente já existe no banco de dados (services)
             //se não existir, cadastrar o cliente no banco de dados (repositores)
             //tratar erros e exibir mensagens de sucesso ou falha
-            const nome: string = await this.rl.question('Digite o nome do cliente: ');                        
-            console.log(`Cliente "${nome}" cadastrado com sucesso!`);                    
+            //const nome: string = await this.rl.question('Digite o nome do cliente: ');                        
+            //console.log(`Cliente "${nome}" cadastrado com sucesso!`);                    
         } catch (error) {
             console.error('Erro ao cadastrar cliente: ', error);            
         }
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async listarClientes(): Promise<void> {
@@ -96,7 +101,8 @@ export class ClienteController {
         } catch (error) {
             console.error('Erro ao listar clientes: ', error);            
         }
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async consultarCliente(): Promise<void> {
@@ -111,7 +117,8 @@ export class ClienteController {
         } catch (error) {
             console.error('Erro ao consultar cliente: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async atualizarCliente(): Promise<void> {
@@ -126,7 +133,8 @@ export class ClienteController {
         } catch (error) {
             console.error('Erro ao atualizar cliente: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async removerCliente(): Promise<void> {
@@ -141,7 +149,8 @@ export class ClienteController {
         } catch (error) {
             console.error('Erro ao remover cliente: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
 }

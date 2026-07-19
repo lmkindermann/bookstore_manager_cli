@@ -1,13 +1,15 @@
+import { rl, rlPause } from '../utils/readlineConfig';
 import { menuEmprestimo } from '../menus/menuOptions';
 
 export class EmprestimoController {
-    public readonly rl: any;
-    private readonly pause: any;
+    //public readonly rl: any;
+    //private readonly pause: any;
     private readonly callback: any;
 
-    constructor(rl: any, pause: any, callback: any) {
-        this.rl = rl;
-        this.pause = pause;
+    //constructor(rl: any, pause: any, callback: any) {
+        //this.rl = rl;
+        //this.pause = pause;
+    constructor(callback: any) {
         this.callback = callback;
     }
 
@@ -15,7 +17,8 @@ export class EmprestimoController {
         let running: boolean = true;
         while(running) {
             menuEmprestimo();
-            const option: string = await this.rl.question(
+            //const option: string = await this.rl.question(
+            const option: string = await rl.question(
                 'Escolha uma opção: '
             );
 
@@ -49,7 +52,8 @@ export class EmprestimoController {
 
                 default:
                     console.log('Opção inválida');
-                    await this.pause();
+                    //await this.pause();
+                    await rlPause();
             }
         }
         this.callback();  // Chama a função de callback para retornar ao menu principal
@@ -67,7 +71,8 @@ export class EmprestimoController {
         } catch (error) {
             console.error('Erro ao cadastrar empréstimo: ', error);            
         }
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async consultarEmprestimo(): Promise<void> {
@@ -82,7 +87,8 @@ export class EmprestimoController {
         } catch (error) {
             console.error('Erro ao consultar empréstimo: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async registrarDevolucao(): Promise<void> {
@@ -97,7 +103,8 @@ export class EmprestimoController {
         } catch (error) {
             console.error('Erro ao registrar devolução: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
 }

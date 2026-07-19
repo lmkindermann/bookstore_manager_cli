@@ -1,13 +1,15 @@
+import { rl, rlPause } from '../utils/readlineConfig';
 import { menuLivro } from '../menus/menuOptions';
 
 export class LivroController {
-    public readonly rl: any;
-    private readonly pause: any;
+    //public readonly rl: any;
+    //private readonly pause: any;
     private readonly callback: any;
 
-    constructor(rl: any, pause: any, callback: any) {
-        this.rl = rl;
-        this.pause = pause;
+    //constructor(rl: any, pause: any, callback: any) {
+        //this.rl = rl;
+        //this.pause = pause;
+    constructor(callback: any) {
         this.callback = callback;
     }
 
@@ -15,7 +17,8 @@ export class LivroController {
         let running: boolean = true;
         while(running) {
             menuLivro();
-            const option: string = await this.rl.question(
+            //const option: string = await this.rl.question(
+            const option: string = await rl.question(
                 'Escolha uma opção: '
             );
 
@@ -63,7 +66,8 @@ export class LivroController {
 
                 default:
                     console.log('Opção inválida');
-                    await this.pause();
+                    //await this.pause();
+                    await rlPause();
             }
         }
         this.callback();  // Chama a função de callback para retornar ao menu principal
@@ -76,12 +80,13 @@ export class LivroController {
             //verificar se o livro já existe no banco de dados (services)
             //se não existir, cadastrar o livro no banco de dados (repositores)
             //tratar erros e exibir mensagens de sucesso ou falha
-            const nome: string = await this.rl.question('Digite o nome do livro: ');                        
-            console.log(`Livro "${nome}" cadastrado com sucesso!`);                    
+            //const nome: string = await this.rl.question('Digite o nome do livro: ');                        
+            //console.log(`Livro "${nome}" cadastrado com sucesso!`);                    
         } catch (error) {
             console.error('Erro ao cadastrar livro: ', error);            
         }
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async listarLivros(): Promise<void> {
@@ -96,7 +101,8 @@ export class LivroController {
         } catch (error) {
             console.error('Erro ao listar livros: ', error);            
         }
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async consultarLivro(): Promise<void> {
@@ -111,7 +117,8 @@ export class LivroController {
         } catch (error) {
             console.error('Erro ao consultar livro: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async atualizarLivro(): Promise<void> {
@@ -126,7 +133,8 @@ export class LivroController {
         } catch (error) {
             console.error('Erro ao atualizar livro: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async removerLivro(): Promise<void> {
@@ -141,7 +149,8 @@ export class LivroController {
         } catch (error) {
             console.error('Erro ao remover livro: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
 }

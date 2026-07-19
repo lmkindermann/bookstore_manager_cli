@@ -1,13 +1,11 @@
+import { rl, rlPause } from '../utils/readlineConfig';
 import { menuAutor } from '../menus/menuOptions';
+import { cadastrarAutor } from '../services/AutorService';
 
 export class AutorController {
-    public readonly rl: any;
-    private readonly pause: any;
     private readonly callback: any;
 
-    constructor(rl: any, pause: any, callback: any) {
-        this.rl = rl;
-        this.pause = pause;
+    constructor(callback: any) {
         this.callback = callback;
     }
 
@@ -15,55 +13,38 @@ export class AutorController {
         let running: boolean = true;
         while(running) {
             menuAutor();
-            const option: string = await this.rl.question(
+            const option: string = await rl.question(
                 'Escolha uma opção: '
             );
 
             switch (option) {
                 case '1':
-                    //função cadastrar autor
-                    //console.log("Opção 1 digitada")  //await this...
-                    //await this.pause();
                     await this.cadastrarAutor();
                     break;
                 
                 case '2':
-                    //função listar autores
-                    //console.log("Opção 2 digitada")
-                    //await this.pause();
                     await this.listarAutores();
                     break;
 
                 case '3':
-                    //função consultar autor
-                    //console.log("Opção 3 digitada")
-                    //await this.pause();
                     await this.consultarAutor();
                     break;
 
                 case '4':
-                    //função atualizar autor
-                    //console.log("Opção 4 digitada")
-                    //await this.pause();
                     await this.atualizarAutor();
                     break;
 
                 case '5':
-                    //função remover autor
-                    //console.log("Opção 5 digitada")
-                    //await this.pause();
                     await this.removerAutor();
                     break;
 
                 case '6':
-                    //função retornar ao menu anterior
-                    //console.log("Opção 6 digitada")
                     running = false;
                     break;
 
                 default:
                     console.log('Opção inválida');
-                    await this.pause();
+                    await rlPause();
             }
         }
         this.callback();  // Chama a função de callback para retornar ao menu principal
@@ -72,17 +53,8 @@ export class AutorController {
     private async cadastrarAutor(): Promise<void> {
         console.clear();
         console.log("Cadastrar Autor");
-        try {
-            //verificar se o autor já existe no banco de dados (services)
-            //se não existir, cadastrar o autor no banco de dados (repositores)
-            //tratar erros e exibir mensagens de sucesso ou falha
-            const nome: string = await this.rl.question('Digite o nome do autor: ');            
-            const nacionalidade: string = await this.rl.question('Digite a nacionalidade do autor: ');            
-            console.log(`Autor "${nome}" cadastrado com sucesso!`);                    
-        } catch (error) {
-            console.error('Erro ao cadastrar autor: ', error);            
-        }
-        await this.pause();
+        await cadastrarAutor();
+        await rlPause();
     }
 
     private async listarAutores(): Promise<void> {
@@ -97,7 +69,8 @@ export class AutorController {
         } catch (error) {
             console.error('Erro ao listar autores: ', error);            
         }
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async consultarAutor(): Promise<void> {
@@ -112,7 +85,8 @@ export class AutorController {
         } catch (error) {
             console.error('Erro ao consultar autor: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async atualizarAutor(): Promise<void> {
@@ -127,7 +101,8 @@ export class AutorController {
         } catch (error) {
             console.error('Erro ao atualizar autor: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
     private async removerAutor(): Promise<void> {
@@ -142,7 +117,8 @@ export class AutorController {
         } catch (error) {
             console.error('Erro ao remover autor: ', error);            
         }    
-        await this.pause();
+        //await this.pause();
+        await rlPause();
     }
 
 }

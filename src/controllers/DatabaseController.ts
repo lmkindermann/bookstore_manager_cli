@@ -1,14 +1,11 @@
+import { rl, rlPause } from '../utils/readlineConfig';
 import { criarBanco, criarTabelas } from '../services/DatabaseService';
 import { menuBancoDados } from '../menus/menuOptions';
 
 export class DatabaseController {
-    public readonly rl: any;
-    private readonly pause: any;
     private readonly callback: any;
 
-    constructor(rl: any, pause: any, callback: any) {
-        this.rl = rl;
-        this.pause = pause;
+    constructor(callback: any) {
         this.callback = callback;
     }
 
@@ -16,7 +13,7 @@ export class DatabaseController {
         let running: boolean = true;
         while(running) {
             menuBancoDados();
-            const option: string = await this.rl.question(
+            const option: string = await rl.question(
                 'Escolha uma opção: '
             );
 
@@ -35,7 +32,7 @@ export class DatabaseController {
 
                 default:
                     console.log('Opção inválida');
-                    await this.pause();
+                    await rlPause();
             }
         }
         this.callback();
@@ -44,23 +41,15 @@ export class DatabaseController {
     private async criarBancoDados(): Promise<void> {
         console.clear();
         console.log("Criar Banco de Dados");
-        try {
-            await criarBanco();                  
-        } catch (error) {
-            console.error('Erro ao criar banco de dados: ', error);            
-        }
-        await this.pause();
+        await criarBanco();
+        await rlPause();
     }
 
     private async criarTabelas(): Promise<void> {
         console.clear();
-        console.log("Criar Tabelas");        
-        try {
-            await criarTabelas();
-        } catch (error) {
-            console.error('Erro ao criar tabelas: ', error);            
-        }
-        await this.pause();
+        console.log("Criar Tabelas");
+        await criarTabelas();        
+        await rlPause();
     }
 
 }
