@@ -1,5 +1,5 @@
 import { rl } from '../utils/readlineConfig';
-import { verificarAutor, inserirAutor, listaAutores } from '../repositories/AutorRepository';
+import { verificarAutor, inserirAutor, listaAutores, buscaAutor } from '../repositories/AutorRepository';
 import { tabelaAutores } from '../models/tabelas';
 
 export async function novoAutor(): Promise<void> {
@@ -23,7 +23,6 @@ export async function novoAutor(): Promise<void> {
 export async function mostrarAutores(): Promise<void> {
     try {
         let result: any = await listaAutores();
-        //console.log(result);
         if (result.rowCount === 0) {
             console.log("A lista de autores está vazia.");
         } else {
@@ -32,4 +31,18 @@ export async function mostrarAutores(): Promise<void> {
     } catch (error) {
         console.error('Erro ao listar autores: ', error);            
     }
+}
+
+export async function consultaAutor(): Promise<void> {
+    try {
+        const nome: string = await rl.question('Digite o nome do autor: ');
+        let result: any = await buscaAutor(nome);
+        if (result.rowCount === 0) {
+            console.log("Autor não encontrado.");
+        } else {
+            tabelaAutores(result);
+        }
+    } catch (error) {
+        console.error('Erro ao consultar autor: ', error);
+    }    
 }
