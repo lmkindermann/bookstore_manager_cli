@@ -56,10 +56,10 @@ export async function editarAutor(): Promise<void> {
             const nome: string = await rl.question('Digite o novo nome do autor: ');
             const nacionalidade: string = await rl.question('Digite a nova nacionalidade do autor: ');
             result = await atualizarAutor(autorId, nome, nacionalidade);
-            console.log(`Autor "${nome}" cadastrado com sucesso!`);
+            console.log(`Autor "${nome}" atualizado com sucesso!`);
         }
     } catch (error) {
-        console.error('Erro ao consultar autor: ', error);
+        console.error('Erro ao atualizar autor: ', error);
     }     
 }
 

@@ -47,8 +47,8 @@ export const sqlNovasTabelas = `
         titulo		VARCHAR(150) NOT NULL,
         ano			NUMERIC(4),
         categoria 	VARCHAR(100),
-        quantidade	INTEGER NOT NULL,
         estoque		INTEGER NOT NULL,
+        quantidade	INTEGER NOT NULL,        
         criado_em	TIMESTAMPTZ DEFAULT NOW(),
 
         CONSTRAINT fk_livros_autor

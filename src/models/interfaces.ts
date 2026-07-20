@@ -8,11 +8,13 @@ export interface AuthorResume{
 
 export interface BookResume{
     id: number;
-    authorId: number;
-    title: string;
-    year: number;
-    category: string;
-    createdIn: string;
+    autor_id: number;
+    titulo: string;
+    ano: number;
+    categoria: string;
+    estoque: number;
+    quantidade: number;
+    criado_em: string;
     //funções/métodos obrigatórios?
 }
 

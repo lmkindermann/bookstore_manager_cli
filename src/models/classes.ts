@@ -17,19 +17,23 @@ export class Author implements AuthorResume{
 
 export class Book implements BookResume{
     id: number;
-    authorId: number;
-    title: string;
-    year: number;
-    category: string;
-    createdIn: string;
+    autor_id: number;
+    titulo: string;
+    ano: number;
+    categoria: string;
+    estoque: number;
+    quantidade: number;
+    criado_em: string;
 
-    constructor(id: number, authorId: number, title: string, year: number, category: string, createdIn: string){
+    constructor(id: number, autor_id: number, titulo: string, ano: number, categoria: string, estoque: number, quantidade: number, criado_em: string){
         this.id = id;
-        this.authorId = authorId;
-        this.title = title;
-        this.year = year;
-        this.category = category;
-        this.createdIn = createdIn;
+        this.autor_id = autor_id;
+        this.titulo = titulo;
+        this.ano = ano;
+        this.categoria = categoria;
+        this.estoque = estoque;
+        this.quantidade = quantidade;
+        this.criado_em = criado_em;
     }
     //funções/métodos da classe
 }
