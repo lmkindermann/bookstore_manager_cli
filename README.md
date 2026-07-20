@@ -59,8 +59,8 @@ Clone o repositório:
 
 Acesse a pasta do projeto:
 ```
-- vs code
-- cd bookstore_manager_cli
+- code (em uma janela de terminal ou no VS Code)
+- cd bookstore_manager_cli OU Open Folder -> Bookstore Manager CLI
 ```
 
 Instale as dependências: 
@@ -74,20 +74,20 @@ Instale as dependências:
 Existem duas maneiras de configurar o Banco de Dados para esta aplicação:
 
 * Através da CLI do Sistema.
-1 - Atualize as informações de usuário/senha no arquivo .env
-2 - Execute a aplicação via Terminal.
-3 - Se for a 1a vez, um aviso de ausência de banco de dados será exibido
-4 - Verifique se o postgreSQL pgAdmin está em execução.
-5 - Verifique se o database padrão "postgres" existe.
-6 - Navegue nas opções (5).(1) para criar um novo banco de dados.
-7 - Navegue nas opções (5).(2) para criar as tabelas.
-8 - Reinicie a aplicação para inicializar o pool de comunicação.
+1. Atualize as informações de usuário/senha no arquivo .env
+2. Execute a aplicação via Terminal.
+3. Se for a 1a vez, um aviso de ausência de banco de dados será exibido
+4. Verifique se o postgreSQL pgAdmin está em execução.
+5. Verifique se o database padrão "postgres" existe.
+6. Navegue nas opções (5).(1) para criar um novo banco de dados.
+7. Navegue nas opções (5).(2) para criar as tabelas.
+8. Reinicie a aplicação para inicializar o pool de comunicação.
 
 * Através do PostgreSQL
-1 - Crie um novo database chamado **bookstore_manager**
-2 - Abra o arquivo ./src/database/schema.sql
-3 - Execute o código através do Query Tool 
-4 - Execute a aplicação via Terminal
+1. Crie um novo database chamado **bookstore_manager**
+2. Abra o arquivo ./src/database/schema.sql
+3. Execute o código através do Query Tool 
+4. Execute a aplicação via Terminal
 
 ## Execução
 
@@ -110,40 +110,40 @@ A aplicação foi implementado utilizando a estrutura abaixo, com arquivos separ
 pokedex-typescript-lite/
 |
 |--src/
-|  |--controllers/ ** -> Menus para acesso dos recursos**
+|  |--controllers/  (Menus para acesso dos recursos)
 |  |  |--AutorController.ts
 |  |  |--ClienteController.ts
 |  |  |--DatabaseController.ts
 |  |  |--EmprestimoController.ts
 |  |  |--LivroController.ts
 |  |  |--MainController.ts
-|  |--database/ ** -> Configuração da conexão com o banco de dados**
+|  |--database/  (Configuração da conexão com o banco de dados)
 |  |  |--databaseConnection.ts
 |  |  |--schema.sql
-|  |--menus/ ** -> Textos desenvolvidos para a interface com o usuário **
+|  |--menus/  (Textos desenvolvidos para a interface com o usuário)
 |  |  |--menuOptions.ts
-|  |--models/ ** -> Interfaces e estruturas de tabelas de relatórios
+|  |--models/  (Interfaces e estruturas de tabelas de relatórios)
 |  |  |--interfaces.ts
 |  |  |--tabelas.ts
-|  |--repositories/ ** -> Instruções e recursos de comunicação com o banco de dados
+|  |--repositories/  (Instruções e recursos de comunicação com o banco de dados)
 |  |  |--AutorRepository.ts
 |  |  |--ClienteRepository.ts
 |  |  |--DatabaseRepository.ts
 |  |  |--EmprestimoRepository.ts
 |  |  |--LivroRepository.ts
-|  |--services/ ** -> Tratamento das regras de negócio do sistema**
+|  |--services/  (Tratamento das regras de negócio do sistema)
 |  |  |--AutorService.ts
 |  |  |--ClienteService.ts
 |  |  |--DatabaseService.ts
 |  |  |--EmprestimoService.ts
 |  |  |--LivroService.ts
-|  |--utils/ ** -> Recursos de interface entre sistema e usuário**
+|  |--utils/  (Recursos de interface entre sistema e usuário)
 |  |  |--readlineConfig.ts
-|  |--main.ts ** -> Script principal para inicialização do sistema**
-|--.env ** -> Configuração da conexão com o banco de dados**
+|  |--main.ts  (Script principal para inicialização do sistema)
+|--.env  (Configuração da conexão com o banco de dados)
 |--.gitignore
 |--package.json
-|--README.md ** -> Este documento**
+|--README.md  (Este documento)
 |--tsconfig.json
 ```
 
