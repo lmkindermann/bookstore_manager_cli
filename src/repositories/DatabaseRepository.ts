@@ -54,7 +54,11 @@ export const sqlNovasTabelas = `
         CONSTRAINT fk_livros_autor
             FOREIGN KEY (autor_id)
             REFERENCES autores(id)
-            ON DELETE CASCADE 
+            ON DELETE CASCADE,
+        
+        CONSTRAINT chk_quantidade_maxima CHECK (quantidade <= estoque),
+	    CONSTRAINT chk_quantidade_minima CHECK (quantidade > 0),
+	    CONSTRAINT chk_estoque_minimo CHECK (estoque > 0)
     );
 
     CREATE TABLE IF NOT EXISTS clientes(
@@ -84,6 +88,8 @@ export const sqlNovasTabelas = `
         CONSTRAINT fk_emprestimos_livro
             FOREIGN KEY (livro_id)
             REFERENCES livros(id)
-            ON DELETE RESTRICT
+            ON DELETE RESTRICT,
+
+        CONSTRAINT chk_devolucao CHECK (data_devolucao > data_emprestimo)
     );
 `

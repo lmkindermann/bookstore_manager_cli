@@ -5,6 +5,16 @@ export async function verificarCliente(nome: string): Promise<void> {
     return result;
 }
 
+export async function verificarCpf(cpf: string): Promise<void> {
+    const result: any = await pool.query(sqlVerificarCpf,[cpf]);
+    return result;
+}
+
+export async function verificarEmail(email: string): Promise<void> {
+    const result: any = await pool.query(sqlVerificarEmail,[email]);
+    return result;
+}
+
 export async function inserirCliente(nome: string, cpf: string, data_nasc: string, telefone: string, email: string): Promise<void> {    
     const result: any = await pool.query(sqlInserirCliente,[nome, cpf, data_nasc, telefone, email]);
     return result;
@@ -31,6 +41,10 @@ export async function removerCliente(id: number): Promise<void> {
 }
 
 const sqlVerificarCliente = `SELECT nome FROM clientes WHERE nome = $1`
+
+const sqlVerificarCpf = `SELECT nome FROM clientes WHERE cpf = $1`
+
+const sqlVerificarEmail = `SELECT nome FROM clientes WHERE email = $1`
 
 const sqlInserirCliente = `INSERT INTO clientes (nome, cpf, data_nasc, telefone, email) VALUES ($1, $2, $3, $4, $5)`
 

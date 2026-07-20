@@ -5,8 +5,8 @@ export async function verificarEmprestimo(clienteId: number, livroId: number): P
     return result;
 }
 
-export async function inserirEmprestimo(nome: string, titulo: string, data_devolucao: string): Promise<void> {
-    const result: any = await pool.query(sqlInserirEmprestimo,[nome, titulo, data_devolucao]);
+export async function inserirEmprestimo(nome: string, titulo: string, diarias: number): Promise<void> {
+    const result: any = await pool.query(sqlInserirEmprestimo,[nome, titulo, diarias]);
     return result;
 }
 
@@ -20,13 +20,18 @@ export async function buscaEmprestimo(nome: string, titulo: string): Promise<voi
     return result;
 }
 
-export async function renovarEmprestimo(clienteId: number, livroId: number, data_devolucao: string): Promise<void> {
-    const result: any = await pool.query(sqlRenovarEmprestimo,[clienteId, livroId, data_devolucao]);
+export async function renovarEmprestimo(clienteId: number, livroId: number, diarias: number): Promise<void> {
+    const result: any = await pool.query(sqlRenovarEmprestimo,[clienteId, livroId, diarias]);
     return result;
 }
 
 export async function removerEmprestimo(clienteId: number, livroId: number): Promise<void> {
     const result: any = await pool.query(sqlRemoverEmprestimo,[clienteId, livroId]);
+    return result;
+}
+
+export async function atualizarQuantidade(livroId: number, livroQtd: number): Promise<void> {
+    const result: any = await pool.query(sqlAtualizarQuantidade,[livroId, livroQtd]);
     return result;
 }
 
@@ -78,3 +83,5 @@ const sqlRenovarEmprestimo = `
       AND livro_id = $2`
 
 const sqlRemoverEmprestimo = `DELETE FROM emprestimos WHERE cliente_id = $1 AND livro_id = $2`
+
+const sqlAtualizarQuantidade = `UPDATE livros SET quantidade = $2 WHERE id = $1`

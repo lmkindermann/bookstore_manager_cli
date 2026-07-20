@@ -5,7 +5,7 @@ export async function verificarLivro(titulo: string): Promise<void> {
     return result;
 }
 
-export async function inserirLivro(autorNome: string, titulo: string, ano: string, categoria: string, estoque: string, quantidade: string): Promise<void> {
+export async function inserirLivro(autorNome: string, titulo: string, ano: string, categoria: string, estoque: number, quantidade: number): Promise<void> {
     const result: any = await pool.query(sqlInserirLivro,[autorNome, titulo, ano, categoria, estoque, quantidade]);
     return result;
 }
@@ -20,7 +20,7 @@ export async function buscaLivro(titulo: string): Promise<void> {
     return result;
 }
 
-export async function atualizarLivro(livroId: number, autorId: number, titulo: string, ano: string, categoria: string, estoque: string, quantidade: string): Promise<void> {
+export async function atualizarLivro(livroId: number, autorId: number, titulo: string, ano: string, categoria: string, estoque: number, quantidade: number): Promise<void> {
     const result: any = await pool.query(sqlEditarLivro,[livroId, autorId, titulo, ano, categoria, estoque, quantidade]);
     return result;
 }
