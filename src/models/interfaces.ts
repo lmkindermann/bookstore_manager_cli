@@ -31,9 +31,11 @@ export interface CustomerResume{
 }
 
 export interface BorrowResume{
-    customerId: number;
-    bookId: number;
-    borrowDate: string;
-    returnDate: string;
+    cliente_id: number;
+    livro_id: number;
+    cliente_nome: string;
+    livro_titulo: string;
+    data_devolucao: string;
+    data_emprestimo: string;
     //funções/métodos obrigatórios?
 }

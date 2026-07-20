@@ -7,7 +7,7 @@ export function menuPrincipal() {
     console.log("3. Clientes");
     console.log("4. Empréstimos");
     console.log("5. Banco de Dados");
-    console.log("6. Encerrar")
+    console.log("6. Encerrar");
 }      
         
 export function menuAutor() {
@@ -16,7 +16,7 @@ export function menuAutor() {
     console.log("Selecione a opção desejada:");
     console.log("1. Cadastrar autor");
     console.log("2. Listar autores");
-    console.log("3. Consultar autor")
+    console.log("3. Consultar autor");
     console.log("4. Atualizar autor");
     console.log("5. Remover autor");
     console.log("6. Retornar ao menu anterior");
@@ -28,7 +28,7 @@ export function menuLivro() {
     console.log("Selecione a opção desejada:");
     console.log("1. Cadastrar livro");
     console.log("2. Listar livros");
-    console.log("3. Consultar livro")
+    console.log("3. Consultar livro");
     console.log("4. Atualizar livro");
     console.log("5. Remover livro");
     console.log("6. Retornar ao menu anterior");
@@ -40,7 +40,7 @@ export function menuCliente() {
     console.log("Selecione a opção desejada:");
     console.log("1. Cadastrar cliente");
     console.log("2. Listar clientes");
-    console.log("3. Consultar cliente")
+    console.log("3. Consultar cliente");
     console.log("4. Atualizar cliente");
     console.log("5. Remover cliente");
     console.log("6. Retornar ao menu anterior");
@@ -51,9 +51,11 @@ export function menuEmprestimo() {
     console.log("Empréstimos");
     console.log("Selecione a opção desejada:");
     console.log("1. Cadastrar empréstimo");
-    console.log("2. Consultar empréstimo")
-    console.log("3. Registrar devolução");
-    console.log("4. Retornar ao menu anterior");
+    console.log("2. Listar empréstimos");
+    console.log("3. Consultar empréstimo");
+    console.log("4. Renovar emprestimo");
+    console.log("5. Registrar devolução");
+    console.log("6. Retornar ao menu anterior");
 }
 
 export function menuBancoDados(){

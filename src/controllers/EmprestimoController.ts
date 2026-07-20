@@ -1,14 +1,10 @@
 import { rl, rlPause } from '../utils/readlineConfig';
 import { menuEmprestimo } from '../menus/menuOptions';
+import { novoEmprestimo, mostrarEmprestimos, consultaEmprestimo, editarEmprestimo, apagarEmprestimo } from '../services/EmprestimoService';
 
 export class EmprestimoController {
-    //public readonly rl: any;
-    //private readonly pause: any;
     private readonly callback: any;
 
-    //constructor(rl: any, pause: any, callback: any) {
-        //this.rl = rl;
-        //this.pause = pause;
     constructor(callback: any) {
         this.callback = callback;
     }
@@ -17,94 +13,75 @@ export class EmprestimoController {
         let running: boolean = true;
         while(running) {
             menuEmprestimo();
-            //const option: string = await this.rl.question(
             const option: string = await rl.question(
                 'Escolha uma opção: '
             );
 
             switch (option) {
                 case '1':
-                    //função cadastrar empréstimo
-                    //console.log("Opção 1 digitada")  //await this...
-                    //await this.pause();
                     await this.cadastrarEmprestimo();
                     break;
-                
+
                 case '2':
-                    //função consultar empréstimos
-                    //console.log("Opção 2 digitada")
-                    //await this.pause();
+                    await this.listarEmprestimos();
+                    break;
+                
+                case '3':
                     await this.consultarEmprestimo();
                     break;
 
-                case '3':
-                    //função registrar devolução
-                    //console.log("Opção 3 digitada")
-                    //await this.pause();
+                case '4':
+                    await this.renovarEmprestimo();
+                    break;
+
+                case '5':
                     await this.registrarDevolucao();
                     break;
 
-                case '4':
-                    //função retornar ao menu anterior
-                    //console.log("Opção 4 digitada")
+                case '6':
                     running = false;
                     break;
 
                 default:
                     console.log('Opção inválida');
-                    //await this.pause();
                     await rlPause();
             }
         }
         this.callback();  // Chama a função de callback para retornar ao menu principal
     }
 
-    
     private async cadastrarEmprestimo(): Promise<void> {
         console.clear();
-        console.log("Cadastrar Emprestimo");
-        try {
-            //verificar se o empréstimo já existe no banco de dados (services)
-            //se não existir, cadastrar o empréstimo no banco de dados (repositores)
-            //tratar erros e exibir mensagens de sucesso ou falha
-            console.log(`Empréstimo cadastrado com sucesso!`);                    
-        } catch (error) {
-            console.error('Erro ao cadastrar empréstimo: ', error);            
-        }
-        //await this.pause();
+        console.log("Cadastrar Empréstimo");
+        await novoEmprestimo();
+        await rlPause();
+    }
+
+    private async listarEmprestimos(): Promise<void> {
+        console.clear();
+        console.log("Listar Empréstimos");
+        await mostrarEmprestimos();
         await rlPause();
     }
 
     private async consultarEmprestimo(): Promise<void> {
         console.clear();
-        console.log("Consultar Emprestimo");
-        // Lógica para consultar um empréstimo (nome ou id)
-        // Retorna as informações do empréstimo ou avisa se não encontrado
-        // tratar erros e exibir mensagens de sucesso ou falha
-        try {
-            // Lógica para consultar o empréstimo
-            console.log("Informações do empréstimo exibidas com sucesso!");                    
-        } catch (error) {
-            console.error('Erro ao consultar empréstimo: ', error);            
-        }    
-        //await this.pause();
+        console.log("Consultar Empréstimo");
+        await consultaEmprestimo();
+        await rlPause();
+    }
+
+    private async renovarEmprestimo(): Promise<void> {
+        console.clear();
+        console.log("Renovar Empréstimo")
+        await editarEmprestimo();
         await rlPause();
     }
 
     private async registrarDevolucao(): Promise<void> {
         console.clear();
         console.log("Registrar Devolução");
-        // Lógica para registrar a devolução de um empréstimo
-        // Retorna uma mensagem de sucesso ou avisa se o empréstimo não for encontrado
-        // tratar erros e exibir mensagens de sucesso ou falha
-        try {
-            // Lógica para registrar a devolução
-            console.log("Devolução registrada com sucesso!");                    
-        } catch (error) {
-            console.error('Erro ao registrar devolução: ', error);            
-        }    
-        //await this.pause();
+        await apagarEmprestimo();
         await rlPause();
     }
-
 }

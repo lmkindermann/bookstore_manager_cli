@@ -14,7 +14,7 @@ export async function listaLivros(): Promise<void> {
     const result: any = await pool.query(sqlListaLivros);
     return result;
 }
-// Adicionar campo Autor e mostrar o nome dele buscando pelo ID na tabela autores
+
 export async function buscaLivro(titulo: string): Promise<void> {
     const result: any = await pool.query(sqlBuscaLivro,[titulo]);
     return result;
@@ -38,7 +38,7 @@ const sqlInserirLivro = `
 
 const sqlListaLivros = `
     SELECT livros.id, autores.nome AS "autor", titulo, ano, categoria, estoque, quantidade, TO_CHAR(livros.criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" 
-    FROM livros JOIN autores ON livros.autor_id = autores.id`
+    FROM livros JOIN autores ON livros.autor_id = autores.id ORDER BY autor ASC`
 
 const sqlBuscaLivro = `
     SELECT livros.id, autores.nome AS "autor", titulo, ano, categoria, estoque, quantidade, TO_CHAR(livros.criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" 

@@ -45,8 +45,8 @@ export async function mostrarLivros(): Promise<void> {
 
 export async function consultaLivro(): Promise<void> {
     try {
-        const nome: string = await rl.question('Digite o título do livro: ');
-        let result: any = await buscaLivro(nome);
+        const titulo: string = await rl.question('Digite o título do livro: ');
+        let result: any = await buscaLivro(titulo);
         if (result.rowCount === 0) {
             console.log("Livro não encontrado.");
         } else {

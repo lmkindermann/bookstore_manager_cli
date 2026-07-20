@@ -1,7 +1,6 @@
 import { rl } from '../utils/readlineConfig';
 import { verificarCliente, inserirCliente, listaClientes, buscaCliente, atualizarCliente, removerCliente } from '../repositories/ClienteRepository';
 import { tabelaClientes } from '../models/tabelas';
-import { copyFile } from 'node:fs';
 
 export async function novoCliente(): Promise<void> {
     try {

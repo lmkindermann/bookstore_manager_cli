@@ -34,7 +34,7 @@ const sqlVerificarCliente = `SELECT nome FROM clientes WHERE nome = $1`
 
 const sqlInserirCliente = `INSERT INTO clientes (nome, cpf, data_nasc, telefone, email) VALUES ($1, $2, $3, $4, $5)`
 
-const sqlListaClientes = `SELECT id, nome, cpf, TO_CHAR(data_nasc, 'YYYY-MM-DD') AS "data_nasc", telefone, email, TO_CHAR(criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" FROM clientes`
+const sqlListaClientes = `SELECT id, nome, cpf, TO_CHAR(data_nasc, 'YYYY-MM-DD') AS "data_nasc", telefone, email, TO_CHAR(criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" FROM clientes ORDER BY nome ASC`
 
 const sqlBuscaCliente = `SELECT id, nome, cpf, TO_CHAR(data_nasc, 'YYYY-MM-DD') AS "data_nasc", telefone, email, TO_CHAR(criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" FROM clientes WHERE nome = $1`
 

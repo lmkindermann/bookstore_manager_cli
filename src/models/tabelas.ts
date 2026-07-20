@@ -1,4 +1,4 @@
-import { AuthorResume, BookResume, CustomerResume } from '../models/interfaces';
+import { AuthorResume, BookResume, CustomerResume, BorrowResume } from '../models/interfaces';
 
 export function tabelaAutores(dados: any) {
     // Largura fixa para cada coluna (em número de caracteres)
@@ -99,5 +99,38 @@ export function tabelaClientes(dados: any) {
     const strCriadoEm = String(row.criado_em).padEnd(tamCriadoEm);
     
     console.log(`${strId} | ${strNome} | ${strCpf} | ${strDataNasc} | ${strTelefone} | ${strEmail} | ${strCriadoEm}`);
+    });
+}
+
+export function tabelaEmprestimos(dados: any) {
+    // Largura fixa para cada coluna (em número de caracteres)
+    const tamClienteId = 12;
+    const tamLivroId = 12;
+    const tamNome = 30;
+    const tamTitulo = 30;
+    const tamDataDevolucao = 30;
+    const tamDataEmprestimo = 30;
+    
+    // Cabeçalho alinhado
+    const headClienteId = 'Cliente ID'.padEnd(tamClienteId);
+    const headLivroId = 'Livro ID'.padEnd(tamLivroId);
+    const headNome = 'Cliente'.padEnd(tamNome);
+    const headTitulo = 'Livro'.padEnd(tamTitulo);
+    const headDataDevolucao = 'Data de Devolução'.padEnd(tamDataDevolucao);
+    const headDataEmprestimo = 'Data do Empréstimo'.padEnd(tamDataEmprestimo);
+
+    console.log(`${headClienteId} | ${headLivroId} | ${headNome} | ${headTitulo} | ${headDataDevolucao} | ${headDataEmprestimo}`);
+    console.log('-'.repeat(tamClienteId + tamLivroId + tamNome + tamTitulo + tamDataDevolucao + tamDataEmprestimo + 6));
+
+    // Linhas de dados alinhadas
+    dados.rows.forEach((row: BorrowResume) => {  
+    const strClienteId = String(row.cliente_id).padEnd(tamClienteId);
+    const strLivroId = String(row.livro_id).padEnd(tamLivroId);
+    const strNome = row.cliente_nome.padEnd(tamNome);
+    const strTitulo = row.livro_titulo.padEnd(tamTitulo);
+    const strDataDevolucao = String(row.data_devolucao).padEnd(tamDataDevolucao);
+    const strDataEmprestimo = String(row.data_emprestimo).padEnd(tamDataEmprestimo);
+    
+    console.log(`${strClienteId} | ${strLivroId} | ${strNome} | ${strTitulo} | ${strDataDevolucao} | ${strDataEmprestimo}`);
     });
 }
