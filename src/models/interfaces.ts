@@ -21,11 +21,12 @@ export interface BookResume{
 
 export interface CustomerResume{
     id: number;
-    name: string;
+    nome: string;
     cpf: string;
-    birthDate: string;
-    phone: string;
-    createdIn: string;
+    data_nasc: string;
+    telefone: string;
+    email: string;
+    criado_em: string;
     //funções/métodos obrigatórios?
 }
 

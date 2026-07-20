@@ -1,4 +1,4 @@
-import { AuthorResume, BookResume } from '../models/interfaces';
+import { AuthorResume, BookResume, CustomerResume } from '../models/interfaces';
 
 export function tabelaAutores(dados: any) {
     // Largura fixa para cada coluna (em número de caracteres)
@@ -63,5 +63,41 @@ export function tabelaLivros(dados: any) {
     const strCriadoEm = String(row.criado_em).padEnd(tamCriadoEm);
     
     console.log(`${strId} | ${strAutor} | ${strTitulo} | ${strAno} | ${strCategoria} | ${strEstoque} | ${strQuantidade} | ${strCriadoEm}`);
+    });
+}
+
+export function tabelaClientes(dados: any) {
+    // Largura fixa para cada coluna (em número de caracteres)
+    const tamId = 6;
+    const tamNome = 30;
+    const tamCpf = 15;
+    const tamDataNasc = 20;
+    const tamTelefone = 15;
+    const tamEmail = 30;
+    const tamCriadoEm = 30;
+
+    // Cabeçalho alinhado
+    const headId = 'ID'.padEnd(tamId);
+    const headNome = 'Nome'.padEnd(tamNome);
+    const headCpf = 'CPF'.padEnd(tamCpf);
+    const headDataNasc = 'Data Nascimento'.padEnd(tamDataNasc);
+    const headTelefone = 'Telefone'.padEnd(tamTelefone);
+    const headEmail = 'E-Mail'.padEnd(tamEmail);
+    const headCriadoEm = 'Criado Em'.padEnd(tamCriadoEm);
+
+    console.log(`${headId} | ${headNome} | ${headCpf} | ${headDataNasc} | ${headTelefone} | ${headEmail} |${headCriadoEm}`);
+    console.log('-'.repeat(tamId + tamNome + tamCpf + tamDataNasc + tamTelefone + tamEmail + tamCriadoEm + 6));
+
+    // Linhas de dados alinhadas
+    dados.rows.forEach((row: CustomerResume) => {  
+    const strId = String(row.id).padEnd(tamId);
+    const strNome = row.nome.padEnd(tamNome);
+    const strCpf = row.cpf.padEnd(tamCpf);
+    const strDataNasc = String(row.data_nasc).padEnd(tamDataNasc);
+    const strTelefone = row.telefone.padEnd(tamTelefone);
+    const strEmail = row.email.padEnd(tamEmail);
+    const strCriadoEm = String(row.criado_em).padEnd(tamCriadoEm);
+    
+    console.log(`${strId} | ${strNome} | ${strCpf} | ${strDataNasc} | ${strTelefone} | ${strEmail} | ${strCriadoEm}`);
     });
 }

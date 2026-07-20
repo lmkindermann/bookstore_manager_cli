@@ -31,14 +31,14 @@ export const sqlVerificarBanco = `SELECT 1 FROM pg_database WHERE datname = $1`
 
 export const sqlNovoBanco = `CREATE DATABASE `
 
-export const sqlVerificarTabelas = `SELECT 1 FROM pg_tables WHERE tablename = $1`;
+export const sqlVerificarTabelas = `SELECT 1 FROM pg_tables WHERE tablename = $1`
 
 export const sqlNovasTabelas = `
-    CREATE TABLE IF NOT EXISTS  autores(
+    CREATE TABLE IF NOT EXISTS autores(
         id				SERIAL PRIMARY KEY,
         nome			VARCHAR(150) NOT NULL UNIQUE,
         nacionalidade	VARCHAR(100),
-        criado_em		TIMESTAMPTZ DEFAULT NOW() 
+        criado_em		TIMESTAMP DEFAULT NOW() 
     );
 
     CREATE TABLE IF NOT EXISTS livros(
@@ -49,7 +49,7 @@ export const sqlNovasTabelas = `
         categoria 	VARCHAR(100),
         estoque		INTEGER NOT NULL,
         quantidade	INTEGER NOT NULL,        
-        criado_em	TIMESTAMPTZ DEFAULT NOW(),
+        criado_em	TIMESTAMP DEFAULT NOW(),
 
         CONSTRAINT fk_livros_autor
             FOREIGN KEY (autor_id)
@@ -57,16 +57,17 @@ export const sqlNovasTabelas = `
             ON DELETE CASCADE 
     );
 
-    CREATE TABLE IF NOT EXISTS  clientes(
+    CREATE TABLE IF NOT EXISTS clientes(
         id			SERIAL PRIMARY KEY,
         nome		VARCHAR(150) NOT NULL UNIQUE,
         cpf			CHAR(11) UNIQUE CHECK (LENGTH(cpf) = 11),
         data_nasc	DATE,
         telefone	VARCHAR(20),
-        criado_em	TIMESTAMPTZ DEFAULT NOW()
+        email       VARCHAR(150) NOT NULL UNIQUE,
+        criado_em	TIMESTAMP DEFAULT NOW()
     );
 
-    CREATE TABLE IF NOT EXISTS  emprestimos(	
+    CREATE TABLE IF NOT EXISTS emprestimos(	
         cliente_id		INTEGER,
         livro_id		INTEGER,
         data_devolucao	DATE,
@@ -85,4 +86,4 @@ export const sqlNovasTabelas = `
             REFERENCES livros(id)
             ON DELETE RESTRICT
     );
-`;
+`
