@@ -9,6 +9,7 @@ export interface AuthorResume{
 export interface BookResume{
     id: number;
     autor_id: number;
+    autor: string;
     titulo: string;
     ano: number;
     categoria: string;

@@ -4,12 +4,12 @@ export async function verificarLivro(titulo: string): Promise<void> {
     const result: any = await pool.query(sqlVerificarLivro,[titulo]);
     return result;
 }
-// Adicionar campo Autor e buscar o ID na tabela autores, gerar erro se não existir 
-export async function inserirLivro(titulo: string, ano: string, categoria: string, estoque: string, quantidade: string): Promise<void> {
-    const result: any = await pool.query(sqlInserirLivro,[titulo, ano, categoria, estoque, quantidade]);
+
+export async function inserirLivro(autorNome: string, titulo: string, ano: string, categoria: string, estoque: string, quantidade: string): Promise<void> {
+    const result: any = await pool.query(sqlInserirLivro,[autorNome, titulo, ano, categoria, estoque, quantidade]);
     return result;
 }
-// Adicionar campo Autor e mostrar o nome dele buscando pelo ID na tabela autores
+
 export async function listaLivros(): Promise<void> {
     const result: any = await pool.query(sqlListaLivros);
     return result;
@@ -19,9 +19,9 @@ export async function buscaLivro(titulo: string): Promise<void> {
     const result: any = await pool.query(sqlBuscaLivro,[titulo]);
     return result;
 }
-// Adicionar campo Autor e buscar o ID na tabela autores, gerar erro se não existir 
-export async function atualizarLivro(id: number, titulo: string, ano: string, categoria: string, estoque: string, quantidade: string): Promise<void> {
-    const result: any = await pool.query(sqlEditarLivro,[id, titulo, ano, categoria, estoque, quantidade]);
+
+export async function atualizarLivro(livroId: number, autorId: number, titulo: string, ano: string, categoria: string, estoque: string, quantidade: string): Promise<void> {
+    const result: any = await pool.query(sqlEditarLivro,[livroId, autorId, titulo, ano, categoria, estoque, quantidade]);
     return result;
 }
 
@@ -32,12 +32,20 @@ export async function removerLivro(id: number): Promise<void> {
 
 const sqlVerificarLivro = `SELECT titulo FROM livros WHERE titulo = $1`
 
-const sqlInserirLivro = `INSERT INTO livros (titulo, ano, categoria, estoque, quantidade) VALUES ($1, $2, $3, $4, $5)`
+const sqlInserirLivro = `
+    INSERT INTO livros (autor_id, titulo, ano, categoria, estoque, quantidade) 
+    VALUES ((SELECT id FROM autores WHERE nome = $1 LIMIT 1), $2, $3, $4, $5, $6)`
 
-const sqlListaLivros = `SELECT id, autor_id, titulo, ano, categoria, estoque, quantidade, TO_CHAR(criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" FROM livros`
+const sqlListaLivros = `
+    SELECT livros.id, autores.nome AS "autor", titulo, ano, categoria, estoque, quantidade, TO_CHAR(livros.criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" 
+    FROM livros JOIN autores ON livros.autor_id = autores.id`
 
-const sqlBuscaLivro = `SELECT id, autor_id, titulo, ano, categoria, estoque, quantidade, TO_CHAR(criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" FROM livros WHERE titulo = $1`
+const sqlBuscaLivro = `
+    SELECT livros.id, autores.nome AS "autor", titulo, ano, categoria, estoque, quantidade, TO_CHAR(livros.criado_em, 'YYYY-MM-DD HH24:MI:SS') AS "criado_em" 
+    FROM livros JOIN autores ON livros.autor_id = autores.id WHERE titulo = $1`
 
-const sqlEditarLivro = `UPDATE livros SET autor_id = $2, titulo = $3, ano = $4, categoria = $5, estoque = $6, quantidade = $7 WHERE id = $1`
+const sqlEditarLivro = `UPDATE livros 
+    SET autor_id = $2, titulo = $3, ano = $4, categoria = $5, estoque = $6, quantidade = $7 
+    WHERE id = $1`
 
 const sqlApagarLivro = `DELETE FROM livros WHERE id = $1`
