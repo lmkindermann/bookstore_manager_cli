@@ -172,3 +172,8 @@ pokedex-typescript-lite/
 ## Quadro Kanban
 
 https://trello.com/b/m1rTykPP/bookstore-manager-cli
+
+## Video da Aplicação
+
+https://youtu.be/CS0uiXB6K_8
+https://drive.google.com/file/d/1cnSaikq32Zh27_EKF2zbKA3RoE5c00LZ/view?usp=sharing
